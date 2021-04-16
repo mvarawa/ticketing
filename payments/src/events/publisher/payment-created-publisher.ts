@@ -1,0 +1,6 @@
+import {Publisher,Subjects,PaymentCreatedEvent} from "@mtvtickets/common"
+
+export class PaymentCreatedPublisher extends Publisher<PaymentCreatedEvent>{
+  readonly subject=Subjects.PaymentCreated;
+  
+}
