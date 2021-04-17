@@ -30,8 +30,8 @@ jobs:
         project_id: ${{ secrets.GKE_PROJECT }}
 
     # Configure docker to use the gcloud command-line tool as a credential helper
-    - run: |-
-        gcloud --quiet auth configure-docker
+   # - run: |-
+   #     gcloud --quiet auth configure-docker
 
     # Get the GKE credentials so we can deploy to the cluster
     - uses: google-github-actions/get-gke-credentials@v0.2.1
@@ -47,22 +47,22 @@ jobs:
    #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
    #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
    
-       # Build the Docker image
-    - name: Build
+    - name: "Build and push Docker image to Google Container Registry without action"
       run: |-
-        docker build \
-          --tag "us.gcr.io/$PROJECT_ID/auth/$IMAGE:$GITHUB_SHA" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" \
-          .
+        gcloud auth configure-docker
+        docker build -t gcr.io/${{ secrets.PROJECT_ID }}/auth:latest .
+        docker push gcr.io/${{ secrets.PROJECT_ID }}/auth:latest
+
+
+          
           
     # Push the Docker image to Google Container Registry
-    - name: Publish
-      run: |-
+   # - name: Publish
+     # run: |-
           #docker push mvarawa/auth
             # Push the Docker image to Google Container Registry
  
-          docker push "us.gcr.io/$PROJECT_ID/auth/$IMAGE:$GITHUB_SHA"
+        #  docker push "us.gcr.io/$PROJECT_ID/auth/$IMAGE:$GITHUB_SHA"
     #  run: |-
      #   docker push "us.gcr.io/$PROJECT_ID/auth"
 
