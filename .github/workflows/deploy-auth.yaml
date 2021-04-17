@@ -50,7 +50,7 @@ jobs:
     - name: "Build and push Docker image to Google Container Registry without action"
       run: |-
         gcloud auth configure-docker
-        docker build -t us.gcr.io/${{ env.PROJECT_ID }}/auth:latest .
+        docker cd auth && build -t us.gcr.io/${{ env.PROJECT_ID }}/auth:latest .
         docker push us.gcr.io/${{ env.PROJECT_ID }}/auth:latest
 
 
