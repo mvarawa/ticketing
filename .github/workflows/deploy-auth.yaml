@@ -50,7 +50,10 @@ jobs:
     # Push the Docker image to Google Container Registry
     - name: Publish
       run: |-
-          docker push mvarawa/auth
+          #docker push mvarawa/auth
+            # Push the Docker image to Google Container Registry
+ 
+          docker push "us.gcr.io/$PROJECT_ID/auth/$IMAGE:$GITHUB_SHA"
     #  run: |-
      #   docker push "us.gcr.io/$PROJECT_ID/auth"
 
