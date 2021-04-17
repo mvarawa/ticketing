@@ -11,7 +11,7 @@ env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: ticketing-dev    # Add your cluster name here.
   GKE_ZONE: us-central1-c   # Add your cluster zone here.
-  DEPLOYMENT_NAME: gke-test # Add your deployment name here.
+  DEPLOYMENT_NAME: auth-depl # Add your deployment name here.
   IMAGE: static-site
 
 jobs:
